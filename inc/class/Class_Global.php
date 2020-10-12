@@ -8,7 +8,7 @@ class RsGlobal
 {
 	public $dbTable;
 	public $dbCon;
-	public $ppp = 10;
+	public $ppp = 10000;
 	function __construct($dbConnection = null,$table = null)
 	{
 		$this->dbCon = $dbConnection;
@@ -17,12 +17,11 @@ class RsGlobal
 	public function Delete($id){
 		return $this->dbCon->query("DELETE FROM $this->dbTable WHERE id = '$id'");
 	}
-	public function Get($id = null,$limit = 10){
+	public function Get($id = null,$limit = 100000){
 		if($id != null)
 		return $this->dbCon->query("SELECT * FROM $this->dbTable WHERE id='$id'");
 		
 		return $this->dbCon->query("SELECT * FROM $this->dbTable  ORDER BY id DESC limit $limit");
-
 	}
 	public function Query($sql){
 		return $this->dbCon->query($sql);

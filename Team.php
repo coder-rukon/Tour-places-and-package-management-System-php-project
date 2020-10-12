@@ -3,21 +3,17 @@ $page_title = "Team Members";
 $menu = "team";
 include("header.php");
 $team = new Team();
-$Member1 = new Member(14151203014,"Asaduzzaman Noor","01718003301","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/an062"] , "images/team1.jpg");
-$Member2 = new Member(14151203015," Rebeka Mow","xxxxxxxxxxx","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/rhythm.lokkhi"] , "images/team1.jpg");
-$Member3 = new Member(14151203016,"Mithila","xxxxxxxxx","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/profile.php?id=100047666022206"] , "images/team1.jpg");
-$Member4 = new Member(14151203014,"Asaduzzaman Noor","01718003301","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/an062"] , "images/team1.jpg");
-
+$Member1 = new Member(15163103062,"Asaduzzaman Noor","01718003301","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/an062"] , "images/team1.jpg");
+$Member2 = new Member(15163103088," Rebeka Mou","xxxxxxxxxxx","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/rhythm.lokkhi"] , "images/team1.jpg");
+$Member3 = new Member(15163103052,"Mithila Akter","xxxxxxxxx","CSE","33th","Day","1",["facebook"=> "https://www.facebook.com/profile.php?id=100047666022206"] , "images/team1.jpg");
 $team->addMember($Member1);
 $team->addMember($Member2);
 $team->addMember($Member3);
-$team->addMember($Member4);
 ?>
 <section class="banner-w3layouts-bottom py-lg-5 py-3">
 		<div class="container py-lg-4 py-3">
 			<div class="row">
 				<?php foreach ($team->getMemeber() as $keyMember => $valueMember) {
-
 				?>
 				<div class="col-lg-3 customer-main">
 					<div class="card rs_members">
@@ -36,7 +32,6 @@ $team->addMember($Member4);
 								</h6>
 								<div class="row  pt-3 mt-3 team-social border-top">
 									<ul class="col-md-12 d-flex justify-content-center social-icons">
-
 										<li>
 											<a href="<?php echo $valueMember->social['facebook']; ?>">
 												<i class="fab fa-facebook-f"></i>
@@ -52,7 +47,6 @@ $team->addMember($Member4);
 												<i class="fab fa-google-plus-g"></i>
 											</a>
 										</li>
-
 									</ul>
 								</div>
 							</div>

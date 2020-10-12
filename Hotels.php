@@ -12,7 +12,6 @@ if(isset($_GET['s']) AND $_GET['s'] == "offer")
 				<div class="row t-in" style="width: 100%;">
 					<?php
 					$db = new DB();
-
 					$rsGlobal = new RsGlobal($db->con,"hotel");
 					if(isset($_GET['s'])){
 						$allHotels = $rsGlobal->Query("SELECT * FROM hotel WHERE offer != ''");
@@ -20,7 +19,6 @@ if(isset($_GET['s']) AND $_GET['s'] == "offer")
 					else{
 						$allHotels = $rsGlobal->Query("SELECT * FROM hotel");
 					}
-
 					while ($row = $allHotels->fetch_assoc()) {
 						$hotel = $row;
 						include('inc/template/hotel_loop.php');

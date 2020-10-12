@@ -1,4 +1,11 @@
 <?php
+$config = [
+	"payment" => [
+		"store_id" => "digit5f77789e3bf79",
+		"store_passwd" => "digit5f77789e3bf79@ssl",
+		"api_url" => "https://sandbox.sslcommerz.com/gwprocess/v4/api.php",
+	]
+];
 function GetDivision(){
  	$divistion = [
 		"Barishal",
@@ -25,7 +32,6 @@ function isLogin(){
 function beforLoad($action){
 	$action();
 }
-
 function uploadImage($imageName){
 	$baseDir = "upload";
 	$url = "";
@@ -41,3 +47,9 @@ function uploadImage($imageName){
 	
 	return $url;
 }
+
+function getBaseUrl(){
+	return 'http://localhost/tourist_guide';
+}
+
+

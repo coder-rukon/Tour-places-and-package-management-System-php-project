@@ -3,7 +3,7 @@ class Booking extends RsGlobal
 {
     protected $table = "booking";
     public $db;
-    public $id, $user_id, $package_id, $payment_method, $payment_id, $requested_date, $status, $booking_date,$total_seat;
+    public $id, $user_id,$total, $package_id, $payment_method, $payment_id, $requested_date, $status, $booking_date,$total_seat,$bank_tran_id,$val_id;
     function __construct($id = null , $db= null)
 	{
 		if($db != null){
@@ -15,10 +15,18 @@ class Booking extends RsGlobal
 		if($id != null)
 			$this->setFromId($id);
 	}
+	public function setFromId($id){
+		$data = $this->Get($id);
+		while ($row =  $data->fetch_assoc()) {
+			foreach ($row as $key => $value) {
+				$this->{$key} = $value;
+			}
+		}
+	}
     
     public function Add($data){
         
-        $this->Insert($data);
+        return $this->Insert($data);
     }
     public function getByPackage($packageId,$status = null){
     	if($status)

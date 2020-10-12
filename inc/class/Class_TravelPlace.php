@@ -36,7 +36,7 @@ class TravelPlace extends RsGlobal
 		}
 		return $this;
 	}
-	public function Get($id = null,$limit = 10){
+	public function Get($id = null,$limit = 100000){
 		if($id != null)
 		return $this->dbCon->query("SELECT * FROM $this->dbTable WHERE id='$id'");
 		
@@ -48,9 +48,7 @@ class TravelPlace extends RsGlobal
 			$sql = "SELECT * FROM $this->dbTable  WHERE name like '%".$_GET['s']."%'";
 		}
 		return $this->dbCon->query($sql."  ORDER BY id DESC limit $limit");
-
 	}
-
 	public function getSpotsId($string1,$string2){
 		$string = 'spot_'.strtolower($string1).'_spot_'.strtolower($string2);
 		$string = str_replace(" ",'',$string);

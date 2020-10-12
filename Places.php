@@ -16,7 +16,6 @@ $isPlaceFound = false;
 			<h3 class="tittle text-center mb-lg-5 mb-3">Search Result of: <?php echo $_GET['s'];?></h3>
 			<?php endif; ?>
 			<div class="row inner-sec-agileits-w3ls">
-				<div class="row t-in">
 					<?php
 					
 					while ($row = $allTravelPlace->fetch_assoc()) {
@@ -28,13 +27,11 @@ $isPlaceFound = false;
 						$isPlaceFound = true;
 					}
 					?>
-				</div>
 			</div>
 			<?php 
 				if(!$isPlaceFound){
 					echo '<p class="alert alert-danger">Not Found.</p>';
 				}
-
 			?>
 		</div>
 	</section>

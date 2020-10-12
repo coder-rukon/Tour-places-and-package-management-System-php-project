@@ -5,7 +5,6 @@
 	$con = new Db();
 	$rsGlobals = new RsGlobal($con->con,"restaurant");
 	$allRestaurant = $rsGlobals->get();
-
 	
 	$travelPlace = new TravelPlace(null ,$con);
 	$allTouristPlace = $travelPlace->get();
@@ -63,17 +62,15 @@
 				$data['thumbnail'] =  uploadImage("image");
 			}
 			$travelPlace->Update($placeId,$data);
-
 			$message = "Place Updated";
 		}else{
 			$isError = true;
 			$message = "Name Field Required";
 		}
 	}
-
 	$tourPlace  = new TravelPlace($placeId,$con);
 ?>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="<?php echo getBaseUrl(); ?>/admin.php?p=edit_tour_place&edit=<?php echo $tourPlace->id; ?>" method="post" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-xs-12 col-sm-8">
 			<label>Name</label>
@@ -126,7 +123,6 @@
 					<?php echo json_encode($tourPlace->tourist_spot); ?>
 				</div>
 				<div class="all_spot_list edit_form">
-
 					<?php
 					if( isset($tourPlace->tourist_spot['spots']) && !empty($tourPlace->tourist_spot['spots'])){
 						foreach ($tourPlace->tourist_spot['spots'] as $keySpots => $valueSpots) {
@@ -134,7 +130,6 @@
 						}
 					}
 					?>
-
 				</div>
 				<div class="fare_nearby_tp">
 					<?php
@@ -179,7 +174,6 @@
 						}
 					?>
 						
-
 				</div>
 			</div>
 			
@@ -233,11 +227,9 @@
 			<label>Nearby Tour Place</label>
 			<select class="form-control" name="nearby_tour_place[]" multiple>
 				<?php
-
 					while ($row2 =$allTouristPlace->fetch_assoc() ) {
 						if(in_array($row2['id'],$tourPlace->nearby_tour_place)){
 							echo '<option selected value="'.$row2['id'].'">'.$row2['name'].'</option>';
-
 						}else{
 						echo '<option value="'.$row2['id'].'">'.$row2['name'].'</option>';
 							
@@ -245,7 +237,6 @@
 					}
 				?>
 			</select>
-
 		</div>
 	</div>
 	<button type="submit"  name="submit" class="btn btn-primary submit mb-4 mt-3">Submit</button>

@@ -29,8 +29,7 @@
 		echo '<p class="alert alert-danger">'.$message.'</p>';
 	}
 ?>
-
-<form action="" method="post" enctype="multipart/form-data">
+<form action="<?php echo getBaseUrl(); ?>/admin.php?p=restaurants_create" method="post" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-xs-12 col-sm-8">
 			<label>Restaurant Name</label>

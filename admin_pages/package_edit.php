@@ -34,8 +34,7 @@
 		echo '<p class="alert alert-danger">'.$message.'</p>';
 	}
 ?>
-
-<form action="" method="post">
+<form action="<?php echo getBaseUrl(); ?>/admin.php?p=package_edit&id=<?php echo $id; ?>" method="post">
 	<label>Name</label>
 	<input class="form-control" name="name" type="text" value="<?php echo $packageObj->name; ?>">
 	<label>Days</label>
@@ -52,7 +51,6 @@
 	<label>To</label>
 	<select class="form-control" name="resort_to"  value="<?php echo $packageObj->resort_to; ?>">
 		<?php
-
 			$touristPlace = $toTravel->Get();
 			while ($row = $touristPlace->fetch_assoc()) {
 				echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';

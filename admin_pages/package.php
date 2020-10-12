@@ -29,7 +29,7 @@
 			$tempNameTo = $tempRowTo['name'];
 			$toId = $tempRowTo['id'];
 		}
-		$data[] = new DataList( $name ." ". $tempNameFrom.' <span class="bg-info"> To </span> '.$tempNameTo.' <span class="bg-info">Days: '.$daysTemp.'</span>' ,null,"Package.php?from=".$fromId.'&to='.$toId.'&days='.$daysTemp,"admin.php?p=package_edit&id=".$row["id"],"admin.php?p=package&delete=".$row["id"]);
+		$data[] = new DataList( $name ,null,"package-details.php?package=".$row["id"],"admin.php?p=package_edit&id=".$row["id"],"admin.php?p=package&delete=".$row["id"]);
 	}
 	include("data_list.php");
 ?>

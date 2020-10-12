@@ -211,4 +211,14 @@
 		event.preventDefault();
 		$(this).closest('.col-xs-12').remove();
 	});
+
+	$("#seat_select").on("change",function(){
+		if( $(this).val() > $(this).attr("max")){
+			alert("Seat are not available.")
+			$("#total_amount").html(0);
+		}else{
+		 $("#total_amount").html( ($(this).val() * $(this).attr('data-price') )+"Tk" );
+		}
+	})
+
 }(jQuery))

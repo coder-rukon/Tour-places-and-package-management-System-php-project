@@ -40,7 +40,6 @@ while ($row = $hotel->fetch_assoc()) {
 								</a>
 							</div>
 						</div>
-
 						<h3>
 							<a href=""><?php echo $name; ?></a>
 						</h3>
@@ -49,7 +48,8 @@ while ($row = $hotel->fetch_assoc()) {
 						</div>
 						
 						<div class="google_map">
-							<?php echo $gmap; ?>
+							<iframe src="<?php echo $gmap; ?>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							
 						</div>
 						<div class="nearby_places mt-20">
 							<h4 class="title">Nearby Places</h4>
@@ -67,15 +67,15 @@ while ($row = $hotel->fetch_assoc()) {
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<!--//left-->
 				<!--right-->
 				<aside class="col-lg-4 right-blog-con text-right rs_sidebar">
 					<div class="right-blog-info text-left">
 						<div class="rs_sidebar_box">
-							<h4 class="title">Hotel Facility</h4>
+							<h4 class="title">Hotel Address</h4>
+							<p><?php echo $address; ?></p>
+							<h4 class="title mt-4">Hotel Facility</h4>
 							<ul class="rs_list mt-4" id="vehiclesList">
 								<?php
 								if(is_array($facility) && !empty($facility)):
@@ -92,7 +92,6 @@ while ($row = $hotel->fetch_assoc()) {
 							</ul>
 						</div>
 					</div>
-
 				</aside>
 				<!--//right-->
 			</div>

@@ -9,7 +9,7 @@
 		
 		<h3>Tour Packages</h3>
 		<form action="Package.php" method="post" class="ban-form row">
-			<div class="col-md-3 banf">
+			<div class="col-md-2 banf">
 				<select class="form-control" name="from" id="country12">
 					<?php
 						$allPlaces = $fromPlace->Get();
@@ -19,7 +19,7 @@
 					?>
 				</select>
 			</div>
-			<div class="col-md-3 banf">
+			<div class="col-md-2 banf">
 				<select id="country13" name="to" class="form-control">
 					<?php
 						$touristPlace = $toTravel->Get();
@@ -29,8 +29,11 @@
 					?>
 				</select>
 			</div>
+			<div class="col-md-2 banf">
+				<input class="form-control" type="date" name="date" placeholder="Select date">
+			</div>
 			<div class="col-md-3 banf">
-				<input class="form-control" type="text" name="days" placeholder="Day's you want to stay?" required="">
+				<input class="form-control" type="text" name="days" placeholder="Day's you want to stay?">
 			</div>
 			<div class="col-md-3 banf">
 				<input class="form-control" type="submit" value="Search">

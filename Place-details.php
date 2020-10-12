@@ -23,7 +23,6 @@ if( isset($travelPlace->tourist_spot['spots']) && !empty($travelPlace->tourist_s
 								</a>
 							</div>
 						</div>
-
 						<h3>
 							<a href=""><?php echo $travelPlace->name; ?></a>
 						</h3>
@@ -31,7 +30,8 @@ if( isset($travelPlace->tourist_spot['spots']) && !empty($travelPlace->tourist_s
 							<p><?php echo $travelPlace->details; ?></p>
 						</div>
 						<div class="google_map">
-							<?php echo $travelPlace->gmap; ?>
+							
+							<iframe src="<?php echo $travelPlace->gmap; ?>" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 						</div>
 						
 						<div class="nearby_place">
@@ -96,9 +96,7 @@ if( isset($travelPlace->tourist_spot['spots']) && !empty($travelPlace->tourist_s
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<!--//left-->
 				<!--right-->
 				<aside class="col-lg-4 right-blog-con text-right">
@@ -157,7 +155,6 @@ if( isset($travelPlace->tourist_spot['spots']) && !empty($travelPlace->tourist_s
 							</div>
 						</div>
 					</div>
-
 				</aside>
 				<!--//right-->
 			</div>

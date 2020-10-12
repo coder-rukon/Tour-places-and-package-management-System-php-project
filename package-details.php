@@ -8,7 +8,6 @@ include("header.php");
     $db = new Db();
     $package = new Package($_GET['package']);
     $booking = new Booking();
-
 	?>
 	<section class="banner-rs-bottom py-lg-5 py-3">
 		<?php ?>
@@ -42,80 +41,70 @@ include("header.php");
                         <li class="list-group-item list-group-item-success"><strong>Number of Day's : </strong> <?php echo $package->days; ?></li>
                         <li class="list-group-item list-group-item-success"><strong>Date : </strong> <?php echo $package->date; ?></li>
                     </ul> 
-                    <form method="post" class="booking_form" action="package-details.php?package=<?php echo $package->id; ?>">
+                    <?php
+                        $packageDate = new DateTime($package->date);
+                        $todayDate = new DateTime();
 
-                        <h2 class="mt-1">Book Now</h2>
-                        <?php
-                            $message = [];
-                            $isBookingRequested = false;
-                            $isValid = true;
-                            if(isset($_POST['booking_resquest'])){
-                                if(isLogin()){
-                                    if(!isset($_POST['booking_seat']) OR empty($_POST['booking_seat']) ){
-                                      $message['seat'] = 'Number of seat field is required';
-                                      $isValid = false;
-                                    }else{
-                                        if( $_POST['booking_seat'] > ($package->total_seat - $package->getBookedSeatNumber()) ){
-                                            $message['seat'] = 'Seat not available.';
-                                            $isValid = false;
+                       if($todayDate<$packageDate){
+                        ?>
+                        <form method="post" class="booking_form" action="package-details.php?package=<?php echo $package->id; ?>">
+                            <h2 class="mt-1">Book Now</h2>
+                            <?php
+                                $message = [];
+                                $isBookingRequested = false;
+                                $isValid = true;
+                                if(isset($_POST['booking_resquest'])){
+                                    if(isLogin()){
+                                        if(!isset($_POST['booking_seat']) OR empty($_POST['booking_seat']) ){
+                                          $message['seat'] = 'Number of seat field is required';
+                                          $isValid = false;
+                                        }else{
+                                            if( $_POST['booking_seat'] > ($package->total_seat - $package->getBookedSeatNumber()) ){
+                                                $message['seat'] = 'Seat not available.';
+                                                $isValid = false;
+                                            }
                                         }
+                                        if($isValid){
+                                            $bookingId = $booking->Add([
+                                                'user_id' => $_SESSION['user']['id'],
+                                                'package_id' => $package->id,
+                                                'payment_method' => "",
+                                                'total' => $_POST['booking_seat'] * $package->price,
+                                                'payment_id' => "",
+                                                'total_seat' => $_POST['booking_seat'],
+                                                'status' => 'pending',
+                                            ]);
+                                            $isBookingRequested = true;
+                                            echo "<meta http-equiv='refresh' content='0;url=".getBaseUrl().'/payment/request.php?booking_id='.$bookingId."'>";
+                                        }
+                                    }else{
+                                        $message['login_required'] = 'You have not sign in. Please login to book your seat.';
                                     }
-
-                                    if(!isset($_POST['payment_id']) OR empty($_POST['payment_id']) ){
-                                      $message['tr_method'] = 'Transection ID required';
-                                      $isValid = false;
-                                    }
-                                    if(!isset($_POST['payment_method']) OR empty($_POST['payment_method']) ){
-                                      $message['tr_id'] = 'Payment method field is required';
-                                      $isValid = false;
-                                    }
-
-                                    if($isValid){
-                                        $booking->Add([
-                                            'user_id' => $_SESSION['user']['id'],
-                                            'package_id' => $package->id,
-                                            'payment_method' => $_POST['payment_method'],
-                                            'payment_id' => $_POST['payment_id'],
-                                            'total_seat' => $_POST['booking_seat'],
-                                            'status' => 'pending',
-                                        ]);
-                                        $isBookingRequested = true;
-                                    }
-                                }else{
-                                    $message['login_required'] = 'You have not sign in. Please login to book your seat.';
+                                    
                                 }
-                                
 
-                            }
+                            ?>
+                            <div class="form-group">
+                                <label>Number Of Seat</label>
+                                <input type="number" name="booking_seat" class="form-control" require max="<?php echo $package->total_seat - $package->getBookedSeatNumber(); ?>" min="1" data-price="<?php echo $package->price; ?>" id="seat_select"/>
+                            </div>
+                            <h5 class="mt-3">Total : <strong id="total_amount">0</strong></h5>
                             
-                        ?>
-                        <div class="form-group">
-                            <label>Number Of Seat</label>
-                            <input type="number" name="booking_seat" class="form-control" require max="<?php echo $package->total_seat - $package->getBookedSeatNumber(); ?>" min="1"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Payment Method</label>
-                            <select class="form-control" name="payment_method">
-                                <option>Bkash</option>
-                                <option>Rocket</option>
-                                <option>Ucash</option>
-                                <option>Nagad</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Payment Transection ID</label>
-                            <input  type="text" name="payment_id" class="form-control" require/>
-                        </div>
+                            <?php
+                                foreach ($message as $key => $value) {
+                                    echo '<p class="alert alert-danger">'.$value.'</p>';
+                                }
+                                if($isBookingRequested){
+                                    echo '<p class="alert alert-success mt-1 mb-1">Your booking request has been received. We will verify and confirm your booking. <br/>Thank you</p>';
+                                }
+                            ?>
+                            <button type="submit" name="booking_resquest" value="1" class="btn btn-success">Book Now</button>
+                        </form>
                         <?php
-                            foreach ($message as $key => $value) {
-                                echo '<p class="alert alert-danger">'.$value.'</p>';
-                            }
-                            if($isBookingRequested){
-                                echo '<p class="alert alert-success mt-1 mb-1">Your booking request has been received. We will verify and confirm your booking. <br/>Thank you</p>';
-                            }
-                        ?>
-                        <button type="submit" name="booking_resquest" value="1" class="btn btn-success">Book Now</button>
-                    </form>
+                       }
+
+                    ?>
+                    
                 </div>
             </div>
             <?php endif; ?>

@@ -3,11 +3,10 @@
 			<div class="row">
 				<div class="col-lg-6 copyrightbottom text-left">
 					<h3>
-						<a class="navbar-brand" href="index.php">Pourist Planet</a>
+						<a class="navbar-brand" href="index.php">Pack & Go</a>
 					</h3>
 					<!-- <p>© 2018 Tour guide. All Rights Reserved
 					</p> -->
-
 				</div>
 				<div class="col-lg-6 copyrighttop mt-3 text-right">
 					<ul>
@@ -41,7 +40,6 @@
 		</div>
 	</footer>
 	<!---->
-
 	<!-- /.footer -->
 	<script src="js/jquery-2.2.3.min.js"></script>
 	<!-- carousel -->
@@ -103,7 +101,6 @@
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
 				event.preventDefault();
-
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
 				}, 1000);
@@ -133,15 +130,12 @@
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
-
 		});
 	</script>
 	<!-- //smooth-scrolling-of-move-up -->
 	<script src="js/bootstrap.js"></script>
 	<script src="js/main.js"></script>
-
 	<!-- js file -->
-
 	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">
 	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -157,5 +151,4 @@
 	<!--End of Tawk.to Script-->
 	
 </body>
-
 </html>

@@ -29,8 +29,6 @@ $allTravelPlace = $travelObj->Get(null,6);
 		</div>
 	</div>
 </section>
-
-
 <!--/process-->
 	<section class="banner-rs-bottom py-lg-5 py-3" id="plats">
 		<div class="container py-lg-4 py-3">
@@ -55,17 +53,15 @@ $allTravelPlace = $travelObj->Get(null,6);
 	<div class="container py-lg-4 py-3">
 		<h3 class="tittle ser text-center mx-auto mb-lg-5 mb-3 ">Recent Gallery Images</h3>
 		<div class="inner-sec-agileits-w3ls">
-
 			<ul class="image_gallery clearfix">
 				<?php
 					$gallery = new Gallery();
-					$allGalleryItems = $gallery->Get(null,8);
+					$allGalleryItems = $gallery->Get(null,12);
 					while ($item = $allGalleryItems->fetch_assoc()) {
 						?>
 							<li class="image_gallery_item">
 								<a href="Gallery-details.php?p=<?php echo $item['id']; ?>" data-gal="prettyPhoto[gallery]">
-									<img src="<?php echo $item['thumbnail']; ?>" alt="">
-									<h2><?php echo $item['name']; ?></h2>
+									<div class="img_bg_thumbnail" style="background-image: url('<?php echo $item['thumbnail']; ?>');"></div>
 								</a>
 							</li>
 						<?php

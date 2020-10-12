@@ -17,8 +17,7 @@
 		echo '<p class="alert alert-danger">'.$message.'</p>';
 	}	
 ?>
-
-<form action="" method="post" enctype="multipart/form-data">
+<form action="<?php echo getBaseUrl(); ?>/admin.php?p=add_gallery" method="post" enctype="multipart/form-data">
 	<label>Image Title</label>
 	<input class="form-control" name="name" type="text">
 	<label>Description</label>

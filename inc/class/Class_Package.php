@@ -37,8 +37,14 @@ class Package extends RsGlobal
 		}
 	}
 
-	public function searchPackage($from,$to,$days){
-		$sql = "SELECT * FROM $this->tableName WHERE place_from ='".$from."' AND resort_to = '".$to."' AND days ='".$days."'";
+	public function searchPackage($from,$to,$days = null,$date = null){
+		$sql = "SELECT * FROM $this->tableName WHERE place_from ='".$from."' AND resort_to = '".$to."' ";
+		if($days && !empty($days)){
+			$sql .= " AND days ='".$days."'";
+		}
+		if($date && !empty($date)){
+			$sql .= " AND date = date('".$date."')";
+		}
 		$return = $this->db->con->query($sql);
 		
 		return $return;

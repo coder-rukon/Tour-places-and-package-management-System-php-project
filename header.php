@@ -8,7 +8,6 @@ if(!isset($menu)){
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
-
 <head>
 	<title>Pack & GO</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +16,6 @@ if(!isset($menu)){
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
-
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
@@ -25,7 +23,6 @@ if(!isset($menu)){
 	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" property="" />
 	<link rel="stylesheet" href="css/contact.css" type="text/css" media="all">
-
 	<link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
 	<link rel="stylesheet" href="css/owl.theme.css" type="text/css" media="all">
 	<link href="css/fontawesome-all.css" rel="stylesheet">
@@ -33,7 +30,6 @@ if(!isset($menu)){
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
 	<link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 </head>
-
 <body>
 	<div class="banner-rs">
 		<header>
@@ -44,9 +40,7 @@ if(!isset($menu)){
 					<span class="navbar-toggler-icon">
 						<i class="fas fa-bars"></i>
 					</span>
-
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ml-auto main_menu">
 						<li class="nav-item <?php echo getMenuClass($menu,"home"); ?>  ">
@@ -77,7 +71,12 @@ if(!isset($menu)){
 						</li>
 						
 						<li class="nav-item <?php echo getMenuClass($menu,"offers"); ?>  ml-xl-2">
-							<a class="nav-link" href="Hotels.php?s=offer">Offers</a>
+							<a class="nav-link" href="Hotels.php">Hotel<i class="fas fa-caret-down"></i></a>
+							<ul>
+								<li><a class="nav-link" href="Hotels.php">All Hotel</a></li>
+								<li><a class="nav-link" href="Hotels.php?s=offer">Offers</a></li>
+							</ul>
+
 						</li>
 						<li class="nav-item <?php echo getMenuClass($menu,"team"); ?>  ml-xl-2">
 							<a class="nav-link" href="Team.php">Our Team</a>

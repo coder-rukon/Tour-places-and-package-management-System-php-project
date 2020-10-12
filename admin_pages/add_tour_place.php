@@ -2,7 +2,6 @@
 	$con = new Db();
 	$rsGlobals = new RsGlobal($con->con,"restaurant");
 	$allRestaurant = $rsGlobals->get();
-
 	
 	$travelPlace = new TravelPlace(null ,$con);
 	$allTouristPlace = $travelPlace->get();
@@ -59,7 +58,6 @@
 				'tourist_spot' => json_encode($tourist_spots)
 			];
 			$travelPlace->insert($data);
-
 			$message = "Place created";
 		}else{
 			$isError = true;
@@ -67,7 +65,7 @@
 		}
 	}
 ?>
-<form action="" method="post" enctype="multipart/form-data">
+<form action="<?php echo getBaseUrl(); ?>/admin.php?p=add_tour_place" method="post" enctype="multipart/form-data">
 	<div class="row">
 		<div class="col-xs-12 col-sm-8">
 			<label>Name</label>
@@ -152,13 +150,11 @@
 			<label>Nearby Tour Place</label>
 			<select class="form-control" name="nearby_tour_place[]" multiple>
 				<?php
-
 					while ($row2 =$allTouristPlace->fetch_assoc() ) {
 						echo '<option value="'.$row2['id'].'">'.$row2['name'].'</option>';
 					}
 				?>
 			</select>
-
 		</div>
 	</div>
 	<button type="submit"  name="submit" class="btn btn-primary submit mb-4 mt-3">Submit</button>

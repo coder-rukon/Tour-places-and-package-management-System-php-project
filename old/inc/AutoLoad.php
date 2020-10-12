@@ -1,0 +1,12 @@
+<?php 
+session_start();
+include('class/Class_DataList.php');
+include('class/Class_Global.php');
+include('class/Class_Db.php');
+include('class/Class_Users.php');
+include('class/Class_Team.php');
+include("helper.php");
+include('class/Class_Gallery.php');
+include('class/Class_Package.php');
+include('class/Class_TravelPlace.php');
+include('class/Booking.php');
