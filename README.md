@@ -27,5 +27,3 @@ http://digitalbd.net/project/tourist/
 	<li>Nearby Spot with travel expenses</li>
 	<li>Place counter, Hotels counter,Gallery Images counter , Tourist counter</li>
 </ul>
-
-# Drop me a email at rukon.info@gmail.com for new project 
