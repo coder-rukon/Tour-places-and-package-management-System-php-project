@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2020 at 07:05 PM
+-- Generation Time: Oct 21, 2020 at 07:37 PM
 -- Server version: 10.1.39-MariaDB
 -- PHP Version: 7.3.5
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `tourist_guide`
 --
+CREATE DATABASE IF NOT EXISTS `tourist_guide` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `tourist_guide`;
 
 -- --------------------------------------------------------
 
@@ -49,7 +51,16 @@ CREATE TABLE `booking` (
 
 INSERT INTO `booking` (`id`, `user_id`, `total_seat`, `package_id`, `payment_method`, `payment_id`, `requested_date`, `status`, `booking_date`, `total`, `bank_tran_id`, `val_id`) VALUES
 (22, 2, 1, 14, 'VISA-Dutch Bangla', 'SSLCZ_5f84870db8c8b', '2020-10-12 22:40:45', 'confirmed', NULL, '230', '2010122244181bYEQsNWmd35oAq', '20101222441802F3kCliJKM9EIa'),
-(24, 2, 1, 20, 'NAGAD-Nagad', 'SSLCZ_5f848c4b77cfe', '2020-10-12 23:03:07', 'confirmed', NULL, '3000', '2010122305110QbBWbb2pOl3tOa', '2010122305110t62caGEUYVeMiS');
+(24, 2, 1, 20, 'NAGAD-Nagad', 'SSLCZ_5f848c4b77cfe', '2020-10-12 23:03:07', 'confirmed', NULL, '3000', '2010122305110QbBWbb2pOl3tOa', '2010122305110t62caGEUYVeMiS'),
+(27, 2, 2, 20, 'DBBLMOBILEB-Dbbl Mobile Banking', 'SSLCZ_5f853a7b43361', '2020-10-13 11:26:18', 'confirmed', NULL, '6000', '2010131128541ppd2gKm2arUMag', '2010131128541Un8XH3jIg8WcaQ'),
+(28, 2, 1, 20, '', '', '2020-10-13 11:31:45', 'pending', NULL, '3000', NULL, NULL),
+(29, 2, 1, 20, 'NAGAD-Nagad', 'SSLCZ_5f853c2561f19', '2020-10-13 11:33:24', 'confirmed', NULL, '3000', '2010131136251ItOttdVVoAgrmV', '2010131136251UPlpAN4jjZWoiq'),
+(30, 2, 2, 21, 'NAGAD-Nagad', 'SSLCZ_5f90697072482', '2020-10-21 23:01:35', 'confirmed', NULL, '11200', '2010212304050GOEQkVwylUqPxW', '2010212304050YfVTIE9CGnowFi'),
+(31, 2, 30, 21, '', '', '2020-10-21 23:06:35', 'pending', NULL, '168000', NULL, NULL),
+(32, 2, 30, 21, '', '', '2020-10-21 23:07:35', 'pending', NULL, '9000', NULL, NULL),
+(33, 2, 3, 21, 'BKASH-BKash', 'SSLCZ_5f906afeee073', '2020-10-21 23:08:14', 'confirmed', NULL, '900', '2010212311220btYxy4EfXV7eci', '20102123112317JnunHIMeikj4J'),
+(34, 2, 35, 21, 'NAGAD-Nagad', 'SSLCZ_5f906b4c0f2a2', '2020-10-21 23:09:31', 'confirmed', NULL, '10500', '201021231203g0oJwMTT11dv2zN', '201021231203RfIW9SPytoQ9K7d'),
+(35, 2, 5, 21, 'DBBLMOBILEB-Dbbl Mobile Banking', 'SSLCZ_5f906c27242cf', '2020-10-21 23:13:10', 'confirmed', NULL, '1500', '201021231534uDloj2DxassZj3C', '201021231535PzvZwXw80XCixn9');
 
 -- --------------------------------------------------------
 
@@ -128,6 +139,7 @@ CREATE TABLE `package` (
   `resort_to` int(30) NOT NULL,
   `days` varchar(5) NOT NULL,
   `type` varchar(10) NOT NULL,
+  `status` varchar(30) NOT NULL,
   `details` text NOT NULL,
   `image` varchar(250) DEFAULT NULL,
   `total_seat` int(50) NOT NULL,
@@ -140,17 +152,17 @@ CREATE TABLE `package` (
 -- Dumping data for table `package`
 --
 
-INSERT INTO `package` (`id`, `name`, `place_from`, `resort_to`, `days`, `type`, `details`, `image`, `total_seat`, `date`, `price`, `last_updated`) VALUES
-(12, 'Test Update', 9, 5, '10', 'single', 'sdfdsf', 'http://localhost/tourist_guide/upload/2018/11/01/5bdb53fc6bc4c_ab.jpg', 95, '2020-09-26', 320, '2020-09-26 19:50:22'),
-(13, 'UPcom', 4, 0, '1', 'single', 'dd', 'http://localhost/tourist_guide/upload/2018/11/01/5bdb53fc6bc4c_ab.jpg', 48, '2020-10-31', 230, '2020-10-02 00:50:04'),
-(14, 'UPcom', 10, 7, '1', 'single', 'dd', 'http://localhost/tourist_guide/upload/2018/11/01/5bdb53fc6bc4c_ab.jpg', 48, '2020-10-10', 230, '2020-10-02 00:50:30'),
-(15, 'Couple Package', 10, 7, '2', 'single', 'dhaka to sajek', '1', 8, '2020-01-10', 20000, '2020-10-02 09:28:45'),
-(16, 'Normal', 4, 10, '4', 'single', 'all in one', '', 40, '2020-10-10', 10000, '2020-10-02 11:05:26'),
-(17, 'single package', 7, 7, '4', 'single', 'Everything in one', '', 40, '2020-02-11', 10000, '2020-10-02 11:06:58'),
-(18, 'Sajek valley tour', 19, 12, '5', 'single', 'go to sajek valley ', 'http://digitalbd.net/project/tourist/upload/2020/10/02/5f77141f8a3b9_18271800htr1.JPG', 60, '2020-05-10', 5000, '2020-10-02 11:36:56'),
-(19, 'Mermaid Package', 20, 1, '2', 'couple', 'All in one', '', 3, '2020-12-05', 100000, '2020-10-02 12:05:45'),
-(20, 'fly north', 4, 15, '3', 'single', '', '', 40, '2020-11-03', 3000, '2020-10-02 12:32:08'),
-(21, 'dhaka to cox bazar', 20, 15, '3', 'single', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, ', 'http://localhost/tourist_guide/upload/2020/10/02/5f77502a1dcb4_bau.jpg', 40, '2020-10-10', 5600, '2020-10-02 12:54:07');
+INSERT INTO `package` (`id`, `name`, `place_from`, `resort_to`, `days`, `type`, `status`, `details`, `image`, `total_seat`, `date`, `price`, `last_updated`) VALUES
+(12, 'Test Update', 9, 5, '10', 'single', '', 'sdfdsf', 'http://localhost/tourist_guide/upload/2018/11/01/5bdb53fc6bc4c_ab.jpg', 95, '2020-09-26', 320, '2020-09-26 19:50:22'),
+(13, 'UPcom', 20, 15, '1', 'single', 'expired', 'dd', 'http://localhost/tourist_guide/upload/2018/11/01/5bdb53fc6bc4c_ab.jpg', 48, '2020-10-31', 230, '2020-10-02 00:50:04'),
+(14, 'UPcom', 10, 7, '1', 'single', '', 'dd', 'http://localhost/tourist_guide/upload/2018/11/01/5bdb53fc6bc4c_ab.jpg', 48, '2020-10-10', 230, '2020-10-02 00:50:30'),
+(15, 'Couple Package', 10, 7, '2', 'single', '', 'dhaka to sajek', '1', 8, '2020-01-10', 20000, '2020-10-02 09:28:45'),
+(16, 'Normal', 4, 10, '4', 'single', '', 'all in one', '', 40, '2020-10-10', 10000, '2020-10-02 11:05:26'),
+(17, 'single package', 7, 7, '4', 'single', '', 'Everything in one', '', 40, '2020-02-11', 10000, '2020-10-02 11:06:58'),
+(18, 'Sajek valley tour', 19, 12, '5', 'single', '', 'go to sajek valley ', 'http://digitalbd.net/project/tourist/upload/2020/10/02/5f77141f8a3b9_18271800htr1.JPG', 60, '2020-05-10', 5000, '2020-10-02 11:36:56'),
+(19, 'Mermaid Package', 20, 1, '2', 'couple', '', 'All in one', '', 3, '2020-12-05', 100000, '2020-10-02 12:05:45'),
+(20, 'fly north', 4, 15, '3', 'single', '', '', '', 40, '2020-11-03', 3000, '2020-10-02 12:32:08'),
+(21, 'dhaka to cox bazar', 20, 15, '3', 'single', 'booked', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, ', 'http://localhost/tourist_guide/upload/2020/10/02/5f77502a1dcb4_bau.jpg', 45, '2020-10-31', 300, '2020-10-02 12:54:07');
 
 -- --------------------------------------------------------
 
@@ -338,7 +350,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `gallery`
