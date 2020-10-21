@@ -213,7 +213,7 @@
 	});
 
 	$("#seat_select").on("change",function(){
-		if( $(this).val() > $(this).attr("max")){
+		if( parseInt($(this).val()) > parseInt($(this).attr("max"))){
 			alert("Seat are not available.")
 			$("#total_amount").html(0);
 		}else{

@@ -16,7 +16,8 @@ $is_package_form = true;
 			<div class="card-deck text-center row">
 				<?php
 				if(isset($_REQUEST['from']) && isset($_REQUEST['to']) && isset($_REQUEST['days'])){
-					$packageFound = $package->searchPackage($_REQUEST['from'],$_REQUEST['to'],$_REQUEST['days'],$_REQUEST['date']);
+					$tempDate = $_REQUEST['year'].'-'.$_REQUEST['month'];
+					$packageFound = $package->searchPackage($_REQUEST['from'],$_REQUEST['to'],$_REQUEST['days'],$tempDate);
 					if($packageFound){
 						$modal_id = "";
 						while ( $row = $packageFound->fetch_assoc() ) {
@@ -66,6 +67,7 @@ $is_package_form = true;
 												<li class="py-2 border-bottom"><strong>Days</strong> <?php echo $row['days']; ?></li>
 												<li class="py-2 border-bottom"><strong>Date</strong> <?php echo $row['date']; ?></li>
 												<li class="py-2 border-bottom"><strong>Type</strong> <?php echo $row['type']; ?></li>
+												<li class="py-2 border-bottom"  style="text-transform: capitalize;"><strong>Status</strong> <?php echo $row['status']; ?></li>
 											</ul>
 											
 											<a href="package-details.php?package=<?php echo $row['id']; ?>" class="btn btn-block btn-outline-primary py-2">Book Now</a>

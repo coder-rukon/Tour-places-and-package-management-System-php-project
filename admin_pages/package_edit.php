@@ -23,6 +23,7 @@
 			$data['total_seat'] = $_POST['total_seat'];
 			$data['price'] = $_POST['price'];
 			$data['date'] = $_POST['date'];
+			$data['status'] = $_POST['status'];
 			$packageObj->update($id,$data);
 			
 			$message = "Updated";
@@ -33,6 +34,7 @@
 	if(!empty($message)){
 		echo '<p class="alert alert-danger">'.$message.'</p>';
 	}
+	$packageObj = new Package($id);
 ?>
 <form action="<?php echo getBaseUrl(); ?>/admin.php?p=package_edit&id=<?php echo $id; ?>" method="post">
 	<label>Name</label>
@@ -59,9 +61,10 @@
 	</select>
 	<label>Type</label>
 	<select class="form-control" name="type" value="<?php echo $packageObj->type; ?>">
-		<option value="single">Single</option>
-		<option value="couple">Couple</option>
+		<option value="single"   <?php echo ($packageObj->type =="single" ? "selected" : ""); ?> >Single</option>
+		<option value="couple"   <?php echo ($packageObj->type =="couple" ? "selected" : ""); ?> >Couple</option>
 	</select>
+	
 	<label>Image</label>
 	<input class="form-control" name="image" type="text"  value="<?php echo $packageObj->image; ?>">
 	<label>Details</label>
@@ -72,5 +75,11 @@
 	<input class="form-control" name="date" type="date" placeholder="Day/Month/Year"  value="<?php echo $packageObj->date; ?>">
     <label>Price</label>
 	<input class="form-control" name="price" type="number" value="<?php echo $packageObj->price; ?>">
+	<label>Status</label>
+	<select class="form-control" name="status">
+		<option value="expired" <?php echo ($packageObj->status =="expired" ? "selected" : ""); ?> >Expired</option>
+		<option value="ongoing"  <?php echo ($packageObj->status =="ongoing" ? "selected" : ""); ?> >Ongoing</option>
+		<option value="boocked"  <?php echo ($packageObj->status =="boocked" ? "selected" : ""); ?> >Bookced</option>
+	</select>
 	<button type="submit"  name="submit" class="btn btn-primary submit mb-4 mt-3">Submit</button>
 </form>

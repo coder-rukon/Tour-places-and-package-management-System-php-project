@@ -16,6 +16,7 @@
 			$data['total_seat'] = $_POST['total_seat'];
 			$data['price'] = $_POST['price'];
 			$data['date'] = $_POST['date'];
+			$data['status'] = $_POST['status'];
 			$packageObj->addPackage($data);
 			
 			$message = "New Packge created";
@@ -55,6 +56,7 @@
 		<option value="single">Single</option>
 		<option value="couple">Couple</option>
 	</select>
+	
 	<label>Image</label>
 	<input class="form-control" name="image" type="text">
 	<label>Details</label>
@@ -65,5 +67,11 @@
 	<input class="form-control" name="date" type="date" placeholder="Day/Month/Year">
 	<label>Price</label>
 	<input class="form-control" name="price" type="number">
+	<label>Status</label>
+	<select class="form-control" name="status">
+		<option value="expired">Expired</option>
+		<option value="ongoing">Ongoing</option>
+		<option value="boocked">Bookced</option>
+	</select>
 	<button type="submit"  name="submit" class="btn btn-primary submit mb-4 mt-3">Submit</button>
 </form>

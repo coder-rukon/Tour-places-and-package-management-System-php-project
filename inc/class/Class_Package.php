@@ -6,7 +6,7 @@ class Package extends RsGlobal
 {
 	public $db;
 	public $tableName = "package";
-	public $id = 0, $name = '',$price = 0, $place_from = '', $resort_to = '', $days = '', $type = '', $details = '', $image = '', $total_seat = '', $date = '', $last_updated= '';
+	public $id = 0, $name = '',$price = 0, $place_from = '',$status="", $resort_to = '', $days = '', $type = '', $details = '', $image = '', $total_seat = '', $date = '', $last_updated= '';
 	function __construct($id = null , $db= null)
 	{
 		if($db != null){
@@ -33,6 +33,7 @@ class Package extends RsGlobal
 			$this->price = $row['price'];
 			$this->total_seat = $row['total_seat'];
 			$this->date = $row['date'];
+			$this->status = $row['status'];
 			$this->last_updated = $row['last_updated'];
 		}
 	}
@@ -43,8 +44,11 @@ class Package extends RsGlobal
 			$sql .= " AND days ='".$days."'";
 		}
 		if($date && !empty($date)){
-			$sql .= " AND date = date('".$date."')";
+			$dateStart = $date.'-01';
+			$dateEnd = $date.'-31';
+			$sql .= " AND cast(date as date) BETWEEN date('".$dateStart."') AND date('".$dateEnd."')";
 		}
+		$sql .= " AND status = 'ongoing'";
 		$return = $this->db->con->query($sql);
 		
 		return $return;
@@ -54,14 +58,21 @@ class Package extends RsGlobal
 	{
 		$date=date_create($data['date']);
 		$formatedDate = date_format($date,"Y-m-d");
-		$sql = "INSERT INTO $this->tableName (`name`,`place_from`, `resort_to`, `days`, `type`, `details`, `image`, `total_seat`, `date`, `price`) VALUES('".$data['name']."','".$data['place_from']."','".$data['resort_to']."','".$data['days']."','".$data['type']."','".$data['details']."','".$data['image']."','".$data['total_seat']."','".$formatedDate."','".$data['price']."')";
+		$sql = "INSERT INTO $this->tableName (`name`,`place_from`, `resort_to`, `days`, `type`, `details`, `image`, `total_seat`, `date`, `price`,`status`) VALUES('".$data['name']."','".$data['place_from']."','".$data['resort_to']."','".$data['days']."','".$data['type']."','".$data['details']."','".$data['image']."','".$data['total_seat']."','".$formatedDate."','".$data['price']."','".$data['status']."')";
 		$this->db->con->query($sql);
 	}
 	public function update($id,$data)
 	{
 		$date=date_create($data['date']);
 		$formatedDate = date_format($date,"Y-m-d");
-		$sql = "UPDATE $this->tableName SET name='".$data['name']."', place_from='".$data['place_from']."', resort_to='".$data['resort_to']."', days='".$data['days']."', type='".$data['type']."', details='".$data['details']."', image='".$data['image']."', total_seat='".$data['total_seat']."', date='".$formatedDate."', price='".$data['price']."' WHERE id='".$id."'";
+		$sql = "UPDATE $this->tableName SET name='".$data['name']."', place_from='".$data['place_from']."', resort_to='".$data['resort_to']."', days='".$data['days']."', type='".$data['type']."', details='".$data['details']."', image='".$data['image']."', total_seat='".$data['total_seat']."', date='".$formatedDate."', price='".$data['price']."', status='".$data['status']."' WHERE id='".$id."'";
+		$this->db->con->query($sql);
+	}
+	public function setBooked()
+	{
+		$date=date_create($data['date']);
+		$formatedDate = date_format($date,"Y-m-d");
+		$sql = "UPDATE $this->tableName SET status='booked' WHERE id='".$this->id."'";
 		$this->db->con->query($sql);
 	}
 	public function getBookedSeatNumber(){

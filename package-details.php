@@ -40,12 +40,13 @@ include("header.php");
                         <li class="list-group-item list-group-item-success"><strong>Available Seat : </strong> <?php echo $package->total_seat - $package->getBookedSeatNumber(); ?></li>
                         <li class="list-group-item list-group-item-success"><strong>Number of Day's : </strong> <?php echo $package->days; ?></li>
                         <li class="list-group-item list-group-item-success"><strong>Date : </strong> <?php echo $package->date; ?></li>
+                        <li class="list-group-item list-group-item-success" style="text-transform: capitalize;"><strong>Status : </strong> <?php echo $package->status; ?></li>
                     </ul> 
                     <?php
                         $packageDate = new DateTime($package->date);
                         $todayDate = new DateTime();
 
-                       if($todayDate<$packageDate){
+                       if($todayDate<$packageDate && $package->status == "ongoing"){
                         ?>
                         <form method="post" class="booking_form" action="package-details.php?package=<?php echo $package->id; ?>">
                             <h2 class="mt-1">Book Now</h2>

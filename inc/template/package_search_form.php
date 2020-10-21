@@ -30,12 +30,29 @@
 				</select>
 			</div>
 			<div class="col-md-2 banf">
-				<input class="form-control" type="date" name="date" placeholder="Select date">
+					<select id="country13" name="month" class="form-control">
+					<?php
+						//setlocale(LC_TIME, 'it_IT');
+						for($m=1;$m<=12;$m++){
+							$dateTemp = mktime(0, 0, 0, $m, 12);
+							echo '<option value="'.strftime("%m", $dateTemp ).'">'.strftime("%B", $dateTemp ).'</option>';
+						}
+					?>
+					</select>
 			</div>
-			<div class="col-md-3 banf">
+			<div class="col-md-2 banf">
+					<select id="country13" name="year" class="form-control">
+					<?php
+						for($i = date('Y'); $i <= date('Y') + 5; $i++){
+							echo '<option>'.$i.'</option>';
+						}
+					?>
+					</select>
+			</div>
+			<div class="col-md-2 banf">
 				<input class="form-control" type="text" name="days" placeholder="Day's you want to stay?">
 			</div>
-			<div class="col-md-3 banf">
+			<div class="col-md-2 banf">
 				<input class="form-control" type="submit" value="Search">
 			</div>
 		</form>

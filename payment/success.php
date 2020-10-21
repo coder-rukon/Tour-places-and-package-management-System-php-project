@@ -14,7 +14,12 @@ if(isset($_POST['status']) && $_POST['status'] == "VALID"){
 		'payment_id' => $_POST['tran_id'],
 		'payment_method' => $_POST['card_type'],
 		'status' => "confirmed"
-	]);
+		]);
+	$package = new Package($bookingData->package_id);
+	if($package->total_seat <= $package->getBookedSeatNumber()){
+		$package->setBooked();
+	}
+
 	header("location: ".getBaseUrl().'/My_account.php?page=package&rsbooktype=success');
 }else{
 	echo "Payment Fail";
