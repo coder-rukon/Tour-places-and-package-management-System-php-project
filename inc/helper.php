@@ -1,8 +1,8 @@
 <?php
 $config = [
 	"payment" => [
-		"store_id" => "digit5f77789e3bf79",
-		"store_passwd" => "digit5f77789e3bf79@ssl",
+		"store_id" => "",
+		"store_passwd" => "",
 		"api_url" => "https://sandbox.sslcommerz.com/gwprocess/v4/api.php",
 	]
 ];
